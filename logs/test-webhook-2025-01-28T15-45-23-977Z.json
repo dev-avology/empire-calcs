@@ -1,0 +1,31 @@
+{
+  "salePrice": "$350,000.00",
+  "propertyAddress": "123 Test Street, Richmond, IN 47374",
+  "existingMortgage": "$200,000.00",
+  "propertyTaxes": "$2,500.00",
+  "otherFees": "$500.00",
+  "commission": "$21,000.00",
+  "titleInsurance": "$1,750.00",
+  "transferTax": "$350.00",
+  "recordingFees": "$85.00",
+  "hoaFees": "$250.00",
+  "escrowFees": "$830.00",
+  "totalClosingCosts": "$26,765.00",
+  "netProceeds": "$122,735.00",
+  "isPartner": "yes",
+  "partnerInfo": {
+    "name": "Sarah Johnson",
+    "title": "Senior Real Estate Agent",
+    "phone": "765-555-4321",
+    "email": "sarah.johnson@remax.com",
+    "company": "RE/MAX",
+    "imageUrl": "https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg"
+  },
+  "timestamp": "2025-01-28T15:45:23.744Z",
+  "calculatorType": "seller",
+  "status": "completed",
+  "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+  "ipAddress": "192.168.1.1",
+  "sessionId": "test-session-123",
+  "referrer": "http://localhost:3002/"
+}

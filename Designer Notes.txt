@@ -1,0 +1,132 @@
+# Empire Title PDF Design Brief
+Created: January 15, 2025
+
+## Quick Development Tips
+1. Use test-driven development with a separate test file (like test-pdf.js)
+2. Create sample data that represents different scenarios (positive/negative numbers, with/without address)
+3. Generate multiple PDFs in one test run to compare layouts and catch issues quickly
+4. Use constants for colors, dimensions, and spacing for consistency
+
+## PDF Design Specifications
+
+### Page Setup
+- Format: Letter (8.5" x 11")
+- Orientation: Portrait
+- Units: Points (pt)
+- Margins: 40pt on all sides
+
+### Color Palette
+- Empire Red: #E31837
+- Dark Gray: #333333
+- Medium Gray: #666666
+- Light Gray: #999999
+- White: #FFFFFF
+- Shadow Gray: #E0E0E0
+
+### Typography
+1. Headers:
+   - Font: Helvetica Bold
+   - Main Title: 20pt
+   - Section Headers: 12pt
+   - Colors: Empire Red for main title, White for section headers
+
+2. Body Text:
+   - Font: Helvetica Regular
+   - Size: 11pt
+   - Color: Dark Gray
+
+3. Special Text:
+   - Net Proceeds: 12pt Bold (Red if negative)
+   - Disclaimer: 7pt Regular, Medium Gray
+   - Contact Info: 11pt Regular/14pt Bold for names
+
+### Layout Elements
+
+1. Logo:
+   - Size: 270x81 points (1.5x original size)
+   - Position: Centered at top, 30pt from top edge
+
+2. 3D Box Effect:
+   - Shadow Offset: 4pt
+   - Shadow Blur: 3pt
+   - White highlight on top/left edges
+   - Gray shadow on bottom/right edges
+   - Background: White
+   - Shadow Color: #CCCCCC
+
+3. Section Headers:
+   - Red background block
+   - White text
+   - 30pt height
+   - Full width of container
+
+4. Contact Boxes:
+   - Size: 250pt width x 100pt height
+   - Photo Size: 80x80pt
+   - Spacing: 40pt from edges
+   - Position: Bottom of page
+   - Template 1: Single box on right
+   - Template 2: Two boxes (partner left, Missy right)
+
+### Spacing Guidelines
+- Logo to Title: 100pt
+- Title to Address: 25pt
+- Address to First Section: 35pt (10pt if no address)
+- Between Sections: 25pt
+- Item Line Height: 25pt
+- Net Proceeds to Disclaimer: 15pt
+- Bottom Margin for Contact Boxes: 120pt
+
+### Optional Elements
+1. Property Address:
+   - Controlled by includeAddress flag
+   - Centered below title
+   - Format: "Street, City, State ZIP"
+
+2. Partner Information (Template 2):
+   - Matches Missy's box dimensions
+   - Same styling and layout
+   - Optional photo
+   - Contact details in same format
+
+## Implementation Notes
+
+### Key Functions
+1. drawBox(x, y, width, height, fillColor):
+   - Creates 3D effect boxes
+   - Used for sections and contact containers
+   - Includes shadow and edge highlights
+
+2. generateSellerNetSheet(results, formData, template):
+   - Main generation function
+   - template=1: Single contact box
+   - template=2: Co-branded layout
+
+### Test Strategy
+1. Create test-pdf.js with sample data
+2. Test multiple scenarios:
+   - Positive/negative numbers
+   - With/without address
+   - Both templates
+3. Generate comparison PDFs in one run
+4. Use descriptive filenames
+
+### Required Images
+1. Empire Title Logo:
+   - Landscape orientation
+   - High resolution for scaling
+   - JPG format
+
+2. Contact Photos:
+   - Square aspect ratio
+   - Minimum 160x160px
+   - Professional headshots
+   - JPG format
+
+## Future Enhancements
+1. Consider adding QR codes
+2. Add option for digital signatures
+3. Implement additional templates
+4. Add custom font support
+
+Remember: Always test PDFs with real data and verify both screen and print appearance.

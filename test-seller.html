@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Seller Net Sheet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./src/styles/main.css" rel="stylesheet">
+    <script type="importmap">
+    {
+        "imports": {
+            "jspdf": "/node_modules/jspdf/dist/jspdf.es.min.js",
+            "jspdf-autotable": "/node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js"
+        }
+    }
+    </script>
+    <style>
+        body {
+            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+        .results-section {
+            display: none;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Seller Net Sheet Calculator</h1>
+        
+        <form id="seller-calculator-form" class="calculator-form">
+            <!-- Contact Information -->
+            <div class="form-section">
+                <h3>Contact Information</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" name="firstName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" name="lastName" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="email" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Phone</label>
+                        <input type="tel" class="form-control" name="phone" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Property Information -->
+            <div class="form-section">
+                <h3>Property Information</h3>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <label>Property Address</label>
+                        <input type="text" class="form-control" name="address" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>City</label>
+                        <input type="text" class="form-control" name="city" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label>State</label>
+                        <select class="form-control" name="state" required>
+                            <option value="MO">Missouri</option>
+                            <option value="KS">Kansas</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label>ZIP Code</label>
+                        <input type="text" class="form-control" name="zip" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sale Information -->
+            <div class="form-section">
+                <h3>Sale Information</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Sale Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control currency-input" name="salePrice" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Existing Mortgage Balance</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control currency-input" name="existingMortgage" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Closing Costs -->
+            <div class="form-section">
+                <h3>Closing Costs</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Commission Rate (%)</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control percentage-input" name="commission" value="6.00" required>
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Property Taxes</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control currency-input" name="propertyTaxes" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Transfer Tax</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control currency-input" name="transferTax" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Recording Fees</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control currency-input" name="recordingFees" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>HOA Fees</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control currency-input" name="hoaFees" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Escrow Fees</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control currency-input" name="escrowFees" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Other Fees</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" class="form-control currency-input" name="otherFees" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Agent Information -->
+            <div class="form-section">
+                <h3>Agent Information</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Agent Name</label>
+                        <input type="text" class="form-control" name="agentName">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Agent Email</label>
+                        <input type="email" class="form-control" name="agentEmail">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Agent Phone</label>
+                        <input type="tel" class="form-control" name="agentPhone">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Agent Title</label>
+                        <input type="text" class="form-control" name="agentTitle">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Calculate Net Proceeds</button>
+                <button type="button" id="reset-btn" class="btn btn-secondary">Reset Form</button>
+            </div>
+        </form>
+
+        <!-- Results Section -->
+        <div id="results" class="results-section">
+            <h3 class="text-center mb-4">Estimated Net Proceeds</h3>
+            <div class="results-grid">
+                <div class="result-item">
+                    <span class="label">Sale Price:</span>
+                    <span id="result-sale-price" class="value"></span>
+                </div>
+                <div class="result-item">
+                    <span class="label">Total Expenses:</span>
+                    <span id="result-total-expenses" class="value"></span>
+                </div>
+                <div class="result-item total">
+                    <span class="label">Net Proceeds:</span>
+                    <span id="result-net-proceeds" class="value"></span>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <button id="generate-pdf-btn" class="btn btn-success">
+                    <i class="fas fa-file-pdf"></i> Generate PDF Report
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script type="module">
+        import { SellerCalculator } from './src/calculators/SellerCalculator.js';
+        import { FormUtils } from './src/utils/FormUtils.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const calculator = new SellerCalculator();
+            const form = document.getElementById('seller-calculator-form');
+            
+            // Initialize form validation and formatting
+            FormUtils.bindFormEvents(form);
+            
+            // Handle form submission
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if (!FormUtils.validateForm(form)) {
+                    return;
+                }
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                try {
+                    const response = await calculator.handleFormSubmission(data);
+                    
+                    if (response.success) {
+                        // Update results display
+                        document.getElementById('result-sale-price').textContent = 
+                            calculator.formatCurrency(response.results.salePrice);
+                        document.getElementById('result-total-expenses').textContent = 
+                            calculator.formatCurrency(response.results.totalExpenses);
+                        document.getElementById('result-net-proceeds').textContent = 
+                            calculator.formatCurrency(response.results.netProceeds);
+
+                        // Show results section
+                        document.getElementById('results').style.display = 'block';
+                        document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+
+                        // Setup PDF generation
+                        document.getElementById('generate-pdf-btn').onclick = () => {
+                            if (response.pdf) {
+                                const dataUrl = response.pdf.output('dataurlstring');
+                                const newWindow = window.open('', '_blank');
+                                newWindow.document.write(`
+                                    <!DOCTYPE html>
+                                    <html>
+                                        <head>
+                                            <title>Seller Net Sheet</title>
+                                            <style>
+                                                body, html {
+                                                    margin: 0;
+                                                    padding: 0;
+                                                    height: 100%;
+                                                    overflow: hidden;
+                                                }
+                                                iframe {
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    border: none;
+                                                }
+                                            </style>
+                                        </head>
+                                        <body>
+                                            <iframe src="${dataUrl}" type="application/pdf" width="100%" height="100%"></iframe>
+                                        </body>
+                                    </html>
+                                `);
+                                newWindow.document.close();
+                            }
+                        };
+                    } else {
+                        alert('Error: ' + response.error);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An unexpected error occurred. Please try again.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

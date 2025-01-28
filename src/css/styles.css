@@ -1,0 +1,58 @@
+/* Empire Title Calculator Styles */
+
+:root {
+    --empire-red: #E31837;
+    --dark-gray: #333333;
+    --medium-gray: #666666;
+    --light-gray: #999999;
+}
+
+/* Thank You Popup Styles */
+.thank-you-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.thank-you-popup .popup-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.thank-you-popup h3 {
+    color: var(--empire-red);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.thank-you-popup p {
+    color: var(--dark-gray);
+    margin-bottom: 1.5rem;
+}
+
+.thank-you-popup .close-btn {
+    background-color: var(--empire-red);
+    color: white;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+}
+
+.thank-you-popup .close-btn:hover {
+    background-color: #c31530;
+}

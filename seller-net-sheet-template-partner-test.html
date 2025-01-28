@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        :root {
+            --empire-red: #E31837;
+            --dark-gray: #333333;
+            --medium-gray: #666666;
+            --light-gray: #999999;
+        }
+
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark-gray);
+            margin: 0;
+            padding: 0;
+            width: 8.5in;
+            height: 11in;
+            position: relative;
+        }
+
+        .page-header {
+            padding: 10pt 40pt 0;
+            text-align: center;
+        }
+
+        .header-logo img {
+            max-width: 180px;
+            height: auto;
+            display: block;
+            margin: 0 auto 5pt;
+        }
+
+        h1 {
+            color: var(--empire-red);
+            font-size: 18pt;
+            text-align: center;
+            margin: 5pt 0;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .address-input {
+            width: calc(100% - 16pt);
+            padding: 6pt;
+            border: 1px solid var(--light-gray);
+            border-radius: 4px;
+            font-size: 11pt;
+            margin-bottom: 4pt;
+        }
+
+        .address-help {
+            font-size: 9pt;
+            color: var(--medium-gray);
+            text-align: center;
+            margin-bottom: 8pt;
+            font-style: italic;
+        }
+
+        .page-content {
+            padding: 0 40pt;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 20pt;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            background-color: var(--empire-red);
+            color: white;
+            font-size: 11pt;
+            padding: 4pt 8pt;
+            margin: 6pt 0;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 6pt 0;
+            font-size: 10pt;
+        }
+
+        li {
+            margin-bottom: 3pt;
+            padding: 3pt 6pt;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .section-total {
+            border-top: 1px solid var(--light-gray);
+            margin-top: 3pt;
+            padding-top: 2pt;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .totals-section {
+            margin-bottom: 10px;
+        }
+
+        .total-line {
+            border-top: 2px solid var(--empire-red);
+            margin-top: 12pt;
+            padding-top: 6pt;
+            font-weight: bold;
+            font-size: 12pt;
+            color: var(--dark-gray);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .total-line .amount {
+            color: var(--empire-red);
+        }
+
+        .contact-section {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 40pt 15pt;
+            margin-top: 10px;
+        }
+
+        .contact {
+            width: 300px;
+            border: 1px solid var(--empire-red);
+            padding: 10pt;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact img {
+            width: 120px;
+            height: 120px;
+            border-radius: 60px;
+            margin: 0 auto 6pt;
+            display: block;
+            border: 1px solid var(--empire-red);
+        }
+
+        .contact strong {
+            font-size: 12pt;
+            color: var(--dark-gray);
+            display: block;
+            margin-bottom: 4pt;
+            text-align: center;
+        }
+
+        .contact p {
+            font-size: 9pt;
+            color: var(--medium-gray);
+            margin: 4pt 0;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        @media print {
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            .page-content {
+                box-shadow: none;
+            }
+
+            .contact {
+                background-color: white;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <div class="header-logo">
+            <img src="assets/images/empire-title-logo-landscape.png.jpg" alt="Empire Logo">
+        </div>
+        <h1>SELLER NET SHEET</h1>
+        <input type="text" class="address-input" id="propertyAddress" placeholder="Enter Property Address" value="123 Main Street, Richmond, IN 47374">
+        <div class="address-help">Enter property address or type 'TBD' if not yet determined</div>
+    </div>
+
+    <div class="page-content">
+        <h2>TRANSACTION DETAILS</h2>
+        <ul>
+            <li>Sale Price <span class="amount">$350,000</span></li>
+        </ul>
+
+        <h2>CLOSING COSTS</h2>
+        <ul>
+            <li>Real Estate Commission (6%) <span class="amount">$21,000</span></li>
+            <li>Prorated Property Taxes <span class="amount">$1,250</span></li>
+            <li>Recording Fees <span class="amount">$85</span></li>
+            <li>HOA Transfer Fee <span class="amount">$250</span></li>
+            <li>Title and Escrow Charges <span class="amount">$2,630</span></li>
+            <div class="section-total">Total Closing Costs <span class="amount">$25,215</span></div>
+        </ul>
+
+        <h2>OTHER FEES</h2>
+        <ul>
+            <li>Home Warranty <span class="amount">$550</span></li>
+            <li>Repairs (Estimate) <span class="amount">$2,500</span></li>
+            <li>Outstanding HOA Dues <span class="amount">$175</span></li>
+            <div class="section-total">Total Other Fees <span class="amount">$3,225</span></div>
+        </ul>
+
+        <div class="totals-section">
+            <div class="total-line">Total Costs <span class="amount">$28,440</span></div>
+            <div class="total-line">Estimated Net Proceeds <span class="amount">$321,560</span></div>
+        </div>
+    </div>
+
+    <div class="contact-section">
+        <div class="contact">
+            <img src="https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg" alt="Sarah Johnson">
+            <strong>Sarah Johnson</strong>
+            <p>Senior Real Estate Agent<br>
+            765-555-4321<br>
+            sarah.johnson@remax.com</p>
+        </div>
+        <div class="contact">
+            <img src="assets/images/MelissaHorner.jpg" alt="Missy Horner">
+            <strong>Missy Horner</strong>
+            <p>President<br>
+            765-935-9966<br>
+            missy@empiretitleservice.com</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test GHL Webhook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        pre {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #response {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test GHL Webhook</h1>
+    <button onclick="sendTestWebhook()">Send Test Webhook</button>
+    <div id="response"></div>
+
+    <script>
+        async function sendTestWebhook() {
+            const webhookUrl = 'https://services.leadconnectorhq.com/hooks/E5ke7shEsizw0QL0nnhv/webhook-trigger/c8d1afd2-f1e0-41cc-a075-d4a47d610a92';
+            
+            // Sample form data
+            const formData = {
+                contact: {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    email: 'john.doe@example.com',
+                    phone: '(555) 123-4567',
+                    address1: '123 Main St',
+                    city: 'Kansas City',
+                    state: 'MO',
+                    postalCode: '64108',
+                    source: 'Seller Net Sheet Calculator',
+                    type: 'Seller Lead',
+                    tags: ['Seller Calculator', 'Net Sheet Generated']
+                },
+                customFields: {
+                    // Property Details
+                    property_address: '123 Main St',
+                    property_city: 'Kansas City',
+                    property_state: 'MO',
+                    property_zip: '64108',
+
+                    // Calculator Results
+                    sale_price: '$500,000.00',
+                    existing_mortgage: '$300,000.00',
+                    commission_amount: '$30,000.00',
+                    title_insurance: '$1,500.00',
+                    property_taxes: '$2,500.00',
+                    other_fees: '$1,000.00',
+                    transfer_tax: '$1,000.00',
+                    recording_fees: '$500.00',
+                    hoa_fees: '$350.00',
+                    escrow_fees: '$800.00',
+                    estimated_net_proceeds: '$162,350.00',
+                    net_proceeds_positive: 'Yes',
+
+                    // Agent Information
+                    referring_agent_name: 'Jane Smith',
+                    referring_agent_email: 'jane.smith@empiretitle.com',
+                    referring_agent_phone: '(555) 987-6543',
+                    referring_agent_title: 'Senior Title Agent',
+                    
+                    // Submission Details
+                    calculator_type: 'Seller Net Sheet',
+                    submission_date: new Date().toLocaleDateString(),
+                    submission_time: new Date().toLocaleTimeString(),
+                    source_url: window.location.href,
+
+                    // Additional Fields
+                    commission_rate: '6.00%',
+                    total_expenses: '$337,650.00',
+                    total_closing_costs: '$37,650.00',
+                    property_type: 'Single Family',
+                    estimated_closing_date: '2025-02-15',
+                    preferred_title_company: 'Empire Title',
+                    preferred_closing_location: 'Kansas City Office',
+                    notes: 'Test submission with all fields populated'
+                }
+            };
+
+            try {
+                const responseDiv = document.getElementById('response');
+                responseDiv.innerHTML = '<p>Sending webhook...</p>';
+
+                const response = await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const responseData = await response.json();
+                
+                responseDiv.innerHTML = `
+                    <h3>Webhook Response:</h3>
+                    <pre>${JSON.stringify(responseData, null, 2)}</pre>
+                `;
+            } catch (error) {
+                document.getElementById('response').innerHTML = `
+                    <h3>Error:</h3>
+                    <pre style="color: red">${error.message}</pre>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>

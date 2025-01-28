@@ -1,0 +1,79 @@
+/* Empire Title Colors */
+:root {
+    --empire-red: #E31837;
+    --dark-gray: #333333;
+    --medium-gray: #666666;
+    --light-gray: #999999;
+}
+
+/* Base Styles */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--dark-gray);
+    max-width: 8.5in;
+    margin: 40pt auto;
+    padding: 0;
+    line-height: 1.5;
+}
+
+/* Header */
+h1 {
+    color: var(--empire-red);
+    font-size: 20pt;
+    text-align: center;
+    margin-top: 100pt;
+    font-weight: bold;
+}
+
+.address {
+    text-align: center;
+    font-size: 11pt;
+    margin-bottom: 35pt;
+}
+
+/* Section Headers */
+h2 {
+    background-color: var(--empire-red);
+    color: white;
+    font-size: 12pt;
+    padding: 8pt;
+    margin: 25pt 0 15pt 0;
+    font-weight: bold;
+}
+
+/* Content */
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 15pt 0;
+    font-size: 11pt;
+}
+
+li {
+    margin-bottom: 8pt;
+}
+
+/* Contact Box */
+.contact {
+    position: fixed;
+    bottom: 40pt;
+    right: 40pt;
+    width: 250px;
+    border: 3px solid var(--empire-red);
+    padding: 15pt;
+    background: white;
+}
+
+.contact strong {
+    font-size: 14pt;
+    color: var(--dark-gray);
+    display: block;
+    margin-bottom: 10pt;
+}
+
+.contact p {
+    font-size: 11pt;
+    color: var(--medium-gray);
+    margin: 5pt 0;
+    line-height: 1.4;
+}
