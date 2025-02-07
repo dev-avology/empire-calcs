@@ -780,3 +780,87 @@ body {
     margin: 0;
     line-height: 1.4;
 }
+
+.modal-backdrop.fade.show {
+    display: none;
+}
+.modal .modal-dialog {
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%)!important;
+}
+.modal.show {
+    backdrop-filter: blur(2px);
+}
+.modal .modal-content {
+    transform: translateY(0%);
+    width: 100%;
+    margin: 0;
+}
+
+.head_main {
+    text-align: center;
+    padding-bottom: 40px;
+    font-weight: 700;
+}
+button.btn-close {
+    box-shadow: none!important;
+    outline: 0!important;
+    border: 0;
+}
+.calculator-container {
+    flex-wrap: wrap;
+}
+.back-button {
+    color: #af232b;
+    text-decoration: none;
+}
+.back-button:hover {
+    color: #000;
+}
+.result-mod .modal-dialog {
+    max-width: 600px;
+}
+
+.result-mod .modal-dialog #results .result-item label {
+    padding: 10px;
+    width: 65%;
+}
+.result-mod .modal-dialog #results .result-item span {
+    padding: 10px;
+    width: 35%;
+    text-align: right;
+    display:block;
+}
+.result-mod .modal-dialog #results .result-item {
+    display: flex;
+    justify-content: space-between;
+}
+.result-mod .modal-dialog #results .result-item:nth-child(odd) {
+    background: #f4f4f4;
+}
+.result-mod .modal-content {
+    max-width: 100%!important;
+}
+.print-button:hover,
+.save-button:hover{
+    color: #e31837;
+}
+div#results h3 {
+    margin-bottom: 27px;
+    text-align: left;
+}
+.com-text {
+    width: 100%;
+    text-align: center;
+}
+.modal .modal-dialog {
+    width: 90%;
+}
+
+@media screen and (max-width:575px){
+.result-mod .modal-dialog #results .result-item label,
+.result-mod .modal-dialog #results .result-item span{
+    width: auto;
+}
+}

@@ -155,48 +155,121 @@ export class SellerCalculator {
     render() {
         return `
             <div class="calculator-container">
-                <button class="btn btn-link mb-4" onclick="document.querySelector('.container.mt-5').classList.remove('d-none'); document.getElementById('calculator-container').classList.add('d-none');">
-                    <i class="fas fa-arrow-left"></i> Back to Calculators
-                </button>
-                <h2>Seller Net Sheet Calculator</h2>
-                <form id="sellerForm" class="calculator-form">
-                    <div class="form-section">
-                        <div class="form-group mb-3">
-                            <label for="sale-price">Sale Price</label>
-                            <input type="text" id="sale-price" name="sale-price" class="form-control currency-input" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="existing-mortgage">Existing Mortgage Balance</label>
-                            <input type="text" id="existing-mortgage" name="existing-mortgage" class="form-control currency-input" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="property-taxes">Property Taxes Due</label>
-                            <input type="text" id="property-taxes" name="property-taxes" class="form-control currency-input" required>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="other-fees">Other Fees</label>
-                            <input type="text" id="other-fees" name="other-fees" class="form-control currency-input" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Calculate</button>
-                    </div>
-                </form>
-                <div id="results" class="mt-4" style="display: none;">
-                    <h3>Results</h3>
-                    <div class="results-grid">
-                        <div class="result-item">
-                            <label>Sale Price:</label>
-                            <span id="result-salePrice"></span>
-                        </div>
-                        <div class="result-item">
-                            <label>Total Expenses:</label>
-                            <span id="result-totalExpenses"></span>
-                        </div>
-                        <div class="result-item">
-                            <label>Net Proceeds:</label>
-                            <span id="result-netProceeds"></span>
-                        </div>
-                    </div>
+                <div class="col-12">
+                    <button class="btn btn-link mb-4 back-button" onclick="document.querySelector('.container.mt-5').classList.remove('d-none'); document.getElementById('calculator-container').classList.add('d-none');">
+                        <i class="fas fa-arrow-left"></i> Back to Calculators
+                    </button>
                 </div>
+                <div class="col-12 text-center">
+                 <h2 class="main-title">Seller Net Sheet Calculator</h2>
+                </div>
+                <div class="col-12">
+                    <form id="sellerForm" class="calculator-form">
+                        <div class="form-section row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="sale-price">Sale Price</label>
+                                    <input type="text" id="sale-price" name="sale-price" class="form-control currency-input" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="existing-mortgage">Existing Mortgage Balance</label>
+                                    <input type="text" id="existing-mortgage" name="existing-mortgage" class="form-control currency-input" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="property-taxes">Property Taxes Due</label>
+                                    <input type="text" id="property-taxes" name="property-taxes" class="form-control currency-input" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="other-fees">Other Fees</label>
+                                    <input type="text" id="other-fees" name="other-fees" class="form-control currency-input" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="home-warranty">Home Warranty</label>
+                                    <input type="text" id="home-warranty" name="home-warranty" class="form-control currency-input" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="real-estate-commission">Real Estate Commission</label>
+                                    <input type="text" id="real-estate-commission" name="real-estate-commission" class="form-control currency-input" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="real-estate-commission">Real Estate Commission</label>
+                                    <input type="text" id="real-estate-commission" name="real-estate-commission" class="form-control currency-input" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="real-estate-commission">Selling Agent Commission</label>
+                                    <input type="text" id="selling-agent-commission" name="selling-agent-commission" class="form-control currency-input" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="real-estate-commission">Buying Agent Commission</label>
+                                    <input type="text" id="buying-agent-commission" name="buying-agent-commission" class="form-control currency-input" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="real-estate-commission">Seller Credit</label>
+                                    <input type="text" id="seller-credit" name="seller-credit" class="form-control currency-input" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center mt-3">
+                                 <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">Calculate</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <!-- Modal -->
+                    <div class="modal fade result-mod" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header mb-0 pb-0">
+                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="results" class="" style="display: none;">
+                                        <h3>Results</h3>
+                                        <div class="results-grid">
+                                            <div class="result-item">
+                                                <label>Sale Price:</label>
+                                                <span id="result-salePrice"></span>
+                                            </div>
+                                            <div class="result-item">
+                                                <label>Total Expenses:</label>
+                                                <span id="result-totalExpenses"></span>
+                                            </div>
+                                            <div class="result-item">
+                                                <label>Net Proceeds:</label>
+                                                <span id="result-netProceeds"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="images/seller-net-sheet-template2.pdf" target="blank" type="button" class="btn btn-primary" >Print</a>
+                                    <a href="images/seller-net-sheet-template2.pdf" target="blank" type="button" class="btn btn-primary">Save</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- Modal End-->
+              
+
             </div>
         `;
     }
